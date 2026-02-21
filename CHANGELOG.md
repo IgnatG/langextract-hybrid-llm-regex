@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.3 (2026-02-21)
+
+### Bug Fixes
+
+- Update langextract dependency to langextract-core and adjust versioning
+  ([`add3f70`](https://github.com/IgnatG/langextract-hybrid-llm-regex/commit/add3f7049cd3e0563afa24670d4cf51f000168d2))
+
+
 ## v1.0.2 (2026-02-21)
 
 ### Bug Fixes
