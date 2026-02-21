@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.4 (2026-02-21)
+
+### Bug Fixes
+
+- Add rule evaluation order documentation and implement get_counters method for snapshot retrieval
+  ([`dd1dfac`](https://github.com/IgnatG/langextract-hybrid-llm-regex/commit/dd1dfacfefac90aa6882d877ee56e61f88f22686))
+
+
 ## v1.0.3 (2026-02-21)
 
 ### Bug Fixes
