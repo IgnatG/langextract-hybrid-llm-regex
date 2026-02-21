@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=82.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "langextract-hybrid"
+version = "0.1.0"
+description = "LangExtract hybrid provider — combines deterministic rule/regex extraction with LLM fallback for cost savings"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = [
+    "langextract @ git+https://github.com/IgnatG/langextract.git@develop",
+]
+
+[project.optional-dependencies]
+spacy = [
+    "spacy>=3.8.11",
+]
+
+[project.entry-points."langextract.providers"]
+hybrid = "langextract_hybrid.provider:HybridLanguageModel"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["langextract_hybrid*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.15.2",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.pylint.main]
+# langextract exposes `providers` dynamically; allow pylint to introspect it.
+extension-pkg-allow-list = ["langextract"]
+
+[tool.pylint."messages control"]
+disable = ["no-member"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E501",  # line length handled by formatter
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["langextract_hybrid"]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+version_variables = ["langextract_hybrid/__init__.py:__version__"]
+branch = "main"
+build_command = "pip install build && python -m build"
+commit_message = "chore(release): v{version}"
+tag_format = "v{version}"
+
+[tool.semantic_release.changelog]
+generate = true
+
+[tool.semantic_release.publish]
+upload_to_pypi = true
