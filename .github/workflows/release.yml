@@ -11,7 +11,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: github.repository == 'IgnatG/langextract-hybrid'
+    if: github.repository == 'IgnatG/langextract-hybrid-llm-regex'
     concurrency:
       group: release
       cancel-in-progress: false
