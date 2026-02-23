@@ -1,4 +1,4 @@
-name: Release
+name: Release & Publish
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: github.repository == 'IgnatG/langextract-hybrid-llm-regex'
+    if: github.repository == 'IgnatG/langcore-hybrid-llm-regex'
     concurrency:
       group: release
       cancel-in-progress: false

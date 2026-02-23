@@ -3,14 +3,14 @@ requires = ["setuptools>=82.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "langextract-hybrid-llm-regex"
+name = "langcore-hybrid-llm-regex"
 version = "1.0.4"
-description = "LangExtract hybrid provider — combines deterministic rule/regex extraction with LLM fallback for cost savings"
+description = "LangCore hybrid provider — combines deterministic rule/regex extraction with LLM fallback for cost savings"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "Apache-2.0"
 dependencies = [
-    "langextract-core>=1.0.0",
+    "langcore>=1.0.0",
 ]
 
 [project.optional-dependencies]
@@ -18,12 +18,12 @@ spacy = [
     "spacy>=3.8.11",
 ]
 
-[project.entry-points."langextract.providers"]
-hybrid = "langextract_hybrid.provider:HybridLanguageModel"
+[project.entry-points."langcore.providers"]
+hybrid = "langcore_hybrid.provider:HybridLanguageModel"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["langextract_hybrid*"]
+include = ["langcore_hybrid*"]
 
 [dependency-groups]
 dev = [
@@ -37,8 +37,8 @@ asyncio_mode = "auto"
 testpaths = ["tests"]
 
 [tool.pylint.main]
-# langextract exposes `providers` dynamically; allow pylint to introspect it.
-extension-pkg-allow-list = ["langextract"]
+# langcore exposes `providers` dynamically; allow pylint to introspect it.
+extension-pkg-allow-list = ["langcore"]
 
 [tool.pylint."messages control"]
 disable = ["no-member"]
@@ -65,11 +65,11 @@ ignore = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["langextract_hybrid"]
+known-first-party = ["langcore_hybrid"]
 
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
-version_variables = ["langextract_hybrid/__init__.py:__version__"]
+version_variables = ["langcore_hybrid/__init__.py:__version__"]
 branch = "main"
 build_command = "pip install build && python -m build"
 commit_message = "chore(release): v{version}"

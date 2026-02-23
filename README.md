@@ -1,8 +1,8 @@
-# LangExtract Hybrid Provider
+# LangCore Hybrid Provider
 
-A provider plugin for [LangExtract](https://github.com/google/langextract) that combines deterministic rule-based extraction (regex, callable functions) with LLM fallback. Saves 50–80% of LLM costs on well-structured documents.
+A provider plugin for [LangCore](https://github.com/google/langcore) that combines deterministic rule-based extraction (regex, callable functions) with LLM fallback. Saves 50–80% of LLM costs on well-structured documents.
 
-> **Note**: This is a third-party provider plugin for LangExtract. For the main LangExtract library, visit [google/langextract](https://github.com/google/langextract).
+> **Note**: This is a third-party provider plugin for LangCore. For the main LangCore library, visit [google/langcore](https://github.com/google/langcore).
 
 ## Installation
 
@@ -10,7 +10,7 @@ Install from source:
 
 ```bash
 git clone <repo-url>
-cd langextract-hybrid
+cd langcore-hybrid
 pip install -e .
 ```
 
@@ -38,8 +38,8 @@ pip install -e ".[spacy]"
 ### Regex Rules for Contract Extraction
 
 ```python
-import langextract as lx
-from langextract_hybrid import (
+import langcore as lx
+from langcore_hybrid import (
     HybridLanguageModel,
     RegexRule,
     RuleConfig,
@@ -91,7 +91,7 @@ print(f"LLM fallbacks: {hybrid_model.llm_fallbacks}")
 
 ```python
 import json
-from langextract_hybrid import CallableRule, RuleConfig
+from langcore_hybrid import CallableRule, RuleConfig
 
 def extract_email(prompt: str) -> str | None:
     """Extract email addresses deterministically."""
@@ -113,7 +113,7 @@ rules = RuleConfig(rules=[
 
 ```python
 import json
-from langextract_hybrid import RegexRule
+from langcore_hybrid import RegexRule
 
 rule = RegexRule(
     r"Amount:\s*\$(?P<amount>[\d,.]+)",
@@ -130,7 +130,7 @@ When `fallback_on_low_confidence` is enabled, rule results with confidence below
 `min_confidence` trigger LLM fallback instead:
 
 ```python
-from langextract_hybrid import RegexRule, RuleConfig
+from langcore_hybrid import RegexRule, RuleConfig
 
 rules = RuleConfig(
     rules=[
@@ -240,7 +240,7 @@ rules = RuleConfig(
 Implement the `ExtractionRule` interface:
 
 ```python
-from langextract_hybrid.rules import ExtractionRule, RuleResult
+from langcore_hybrid.rules import ExtractionRule, RuleResult
 
 class SpacyNERRule(ExtractionRule):
     def __init__(self, nlp_model: str = "en_core_web_sm") -> None:
