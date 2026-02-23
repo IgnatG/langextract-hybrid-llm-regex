@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.1.1 (2026-02-23)
+
+### Bug Fixes
+
+- Update Python version in CI and refine langcore dependency in project files
+  ([`59ba5ca`](https://github.com/IgnatG/langcore-hybrid-llm-regex/commit/59ba5cafd2d17492f18e57b9b758133215ab1163))
+
+
 ## v1.1.0 (2026-02-23)
 
 ### Features
